@@ -1,0 +1,73 @@
+extends base.pug
+
+block title     
+    title Categoria
+block css   
+    link(rel="stylesheet", href="/css/header.css")
+    link(rel="stylesheet", href="/css/main.css")
+
+block container 
+    header.header   
+        h1 
+            i Categorías
+        // Navegacion para las dos pantallas: Productos, Categoria
+        section.container-btn 
+            a#url-product(href="/") Productos
+            a#url-category(href="/categoria") Categorias  
+    
+    
+    .box    
+        section.both-forms.shadow.p-3
+            .form 
+                    if category
+                        form(action="/categoria/update/" + category[0].category_id , method="post") 
+                            .title-form 
+                                .title
+                                    h4  Formulario
+                                .btn-add
+                                    button.btn-form Actualizar
+                            .mb-4 
+                                label.form-label(for="categoryName" ) Nombre
+                                input.form-control(type="text" id="categoryName" name="categoryName" placeholder="Ej.Queso" value=category[0].category_name) 
+                            .mb-4
+                                label.form-label(for="description" ) Descripcion
+                                textarea.form-control( id="description" name="description") #{category[0].category_description}
+                         
+                  
+                    else 
+                        form(action="/categoria", method="post") 
+                            .title-form 
+                                .title
+                                    h4  Formulario
+                                .btn-add
+                                    button.btn-form Guardar
+                            .mb-4 
+                                label.form-label(for="categoryName" ) Nombre
+                                input.form-control(type="text" id="categoryName" name="categoryName" placeholder="Ej.Queso") 
+                            .mb-4
+                                label.form-label(for="description" ) Descripcion
+                                textarea.form-control( id="description" name="description")
+                  
+           
+        section.both-tables.shadow.p-3
+            table.tables
+                thead 
+                    tr  
+                        th Id 
+                        th Nombre 
+                        th Precio 
+                        th Editar/Elimanar
+                tbody 
+                    if infoCategories
+                        each category in infoCategories
+                            tr 
+                                td #{category.category_id}
+                                td #{category.category_name}
+                                td #{category.category_description}
+                                td  
+                                    a.action.update(href="/categoria/update/" + category.category_id) Editar
+                                    a.action.delete.ms-2(href="/categoria/delete/" + category.category_id) Eliminar
+                    else 
+                        tr 
+                            td(colspan=4) #{msg}
+                        

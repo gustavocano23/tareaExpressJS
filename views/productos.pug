@@ -1,0 +1,106 @@
+extends base.pug
+
+block title     
+    title Productos 
+block css   
+    link(rel="stylesheet", href="/css/header.css")
+    link(rel="stylesheet", href="/css/main.css")
+
+block container 
+    header.header   
+        h1 
+            i Productos
+        // Navegacion para las dos pantallas: Productos, Categoria
+        section.container-btn 
+            a#url-product(href="/") Productos
+            a#url-category(href="/categoria") Categorías  
+    
+    .box    
+        section.both-forms.shadow.p-3
+            .form 
+                if product 
+                    form(action="/update/" + product[0].product_id, method="post")
+                        .title-form 
+                            .title
+                                h4  Formulario
+                            .btn-add
+                                 button.btn-form Actualizar
+                        .mb-4 
+                            label.form-label(for="productName" ) Nombre
+                            input.form-control(type="text" id="productName" name="productName" placeholder="Ej.Queso" value=product[0].product_name)
+                        .box-input
+                            .mb-4 
+                                label.form-label(for="price" ) Precio
+                                input.form-control(type="text" id="price" name="price" placeholder="Ej. 30Lps" value=product[0].product_price) 
+                            .mb-4 
+                                label.form-label(for="productStock" ) Cantidad
+                                input.form-control.ms-3(type="text" id="productStock" name="productStock" value=product[0].product_stock)
+                        .mb-4 
+                            label.form-label(for="category" ) Categoría
+                            select.form-control(id="category" name="category" placeholder="Ej. Lacteo")
+                                option(value=product[0].category_id) #{product[0].category_name} 
+                                each category in categories  
+                                    option(value=category.category_id) #{category.category_name}   
+                        .mb-4
+                            label.form-label(for="description" ) Descripción
+                            textarea.form-control( id="description" name="description") #{product[0].product_description}
+                else 
+                    form(action="/", method="post")
+                        .title-form 
+                            .title
+                                h4  Formulario
+                            .btn-add
+                                 button.btn-form Guardar
+                        .mb-4 
+                            label.form-label(for="productName" ) Nombre  
+                            input.form-control(type="text" id="productName" name="productName" placeholder="Ej.Queso")
+                        
+                        .box-input
+                            .mb-4 
+                                label.form-label(for="price" ) Precio 
+                                input.form-control(type="text" id="price" name="price" placeholder="Ej. 30Lps" ) 
+                            .mb-4 
+                                label.form-label(for="productStock" ) Cantidad 
+                                input.form-control.ms-3(type="text" id="productStock" name="productStock" placeholder="Ej. Qyes" )
+                        .mb-4 
+                            label.form-label(for="category" ) Categoría 
+                            select.form-control(id="category" name="category" placeholder="Ej. Lacteo")
+                                option(value="") Seleccionar una categoría
+                                each category in categories  
+                                    option(value=category.category_id) #{category.category_name}   
+
+                        .mb-4
+                            label.form-label(for="description" ) Descripción 
+                            textarea.form-control( id="description" name="description")
+                            
+                     
+                          
+                  
+           
+        section.both-tables.shadow.p-3
+            table.tables
+                thead 
+                    tr  
+                        th Id 
+                        th Nombre 
+                        th Precio 
+                        th Cantidad
+                        th Categoria 
+                        th Descripcion
+                        th Editar/Elimanar
+                tbody 
+                    if products 
+                        each product in products
+                            tr 
+                                td #{product.product_id}
+                                td #{product.product_name}
+                                td L. #{product.product_price}  
+                                td # #{product.product_stock}
+                                td #{product.category_id}
+                                td #{product.product_description}
+                                td  
+                                    a.action.update(href="/update/" + product.product_id) Editar
+                                    a.action.delete.ms-2(href="/delete/" + product.product_id) Eliminar
+                    else 
+                        tr  
+                            td(colspan=7) No hay informacion que mostrar

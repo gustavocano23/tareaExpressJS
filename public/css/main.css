@@ -1,0 +1,136 @@
+.box {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    height: 85vh;
+    padding: 20px;
+    overflow: hidden;
+
+}
+
+
+/*Area del formulario*/
+
+.both-forms {
+    background-color: #fff;
+    width: 30%;
+    height: 100%;
+    border-radius: 5px;
+    overflow-y: scroll;
+}
+.box-input{
+    width: 95%;
+    display: flex;
+    flex-direction: row;
+}
+
+/*Ocultar scroll para IE, Edge y Firefox*/
+.both-forms{
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+
+
+.both-forms::-webkit-scrollbar{
+    display: none;
+}
+.form{
+    padding: 30px;
+}
+.title-form {
+    display: flex;
+    margin-bottom: 30px;
+}
+.title{
+    width: 70%;
+}
+.btn-add{
+    width: 30%;
+    justify-content: flex-end;
+}
+.warning{
+    text-align: center;
+    color: grey;
+}
+.btn-form{
+    width: 100%;
+    height: auto;
+    background-color: #440FE0;
+    color: #fff;
+    border:none;
+    border-radius: 15px;
+    padding: 2px;
+    font-size: 16px;
+    text-align: center;
+
+}
+
+
+
+
+/*Area de la tabla*/
+
+.both-tables {
+    background-color: #fff;
+    width: 65%;
+    height: 100%;
+    border-radius: 5px;
+    margin-left: 25px;
+    overflow-y: scroll;
+
+}
+
+.both-tables{
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+
+.both-tables::-webkit-scrollbar{
+    display: none;
+}
+
+.tables{
+    width: 100%;
+    text-align: center;
+    margin: auto;
+}
+.tables thead tr th{
+    background-color: #fff;
+    color: rgb(52, 52, 56);
+    padding-bottom: 10px;
+}
+
+td{ width: 30px; max-width: 35px; overflow: hidden;}
+
+.tables tbody tr td{
+    background-color: #fff;
+    color: #3c3c3c;
+    padding-top: 15px;
+    padding-bottom: 15px ;
+}
+
+.tables td:first-child{
+    color: #440FE0;
+    font-weight: bold;
+}
+
+.action {
+    text-transform: none;
+    text-decoration: none;
+    color: #fff;
+    border-radius: 10px;
+    margin: auto;
+    padding: 8px;
+    font-size: 13px;
+}
+.action:hover{
+    color: #fff;
+}
+
+.update {
+    background-color: #440FE0;
+}
+
+.delete{
+    background-color: #6E4DD0;
+}
