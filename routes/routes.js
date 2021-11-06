@@ -1,18 +1,18 @@
 import express from "express";
-import {  readCategories,insertCategory, updateCategory, deleteCategory } from "../controller/crudCategoriesController.js";
-import { readProducts, insertProduct, updateProduct, deleteProduct } from "../controller/crudProductsController.js";
+import {  readCategories,insertCategory, updateCategory, deleteCategory, ifIdCategoryExists } from "../controller/crudCategoriesController.js";
+import { readProducts, insertProduct, updateProduct, deleteProduct, ifIdProductExists} from "../controller/crudProductsController.js";
 const router = express.Router()
 
 // Method GET PARA PRODUCTOS
 router.get('/', readProducts)
-router.get('/update/:uid',updateProduct)
-router.get('/delete/:uid', deleteProduct)
+router.get('/update/:uid',ifIdProductExists,updateProduct)
+router.get('/delete/:uid', ifIdProductExists ,deleteProduct)
 
 
 //METHOD GET PARA CATEGORIAS
 router.get('/categoria', readCategories)
-router.get('/categoria/update/:uid',updateCategory)
-router.get('/categoria/delete/:uid',deleteCategory )
+router.get('/categoria/update/:uid',ifIdCategoryExists,updateCategory)
+router.get('/categoria/delete/:uid',ifIdCategoryExists,deleteCategory )
 
 
 //Method POST PARA PRODUCTOS

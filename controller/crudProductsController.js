@@ -1,4 +1,4 @@
-import { render } from "pug";
+
 import connection from "../database/connection.js"
 
 export const readProducts = (req, resp) => {
@@ -98,5 +98,17 @@ export const deleteProduct = (req, resp) => {
         console.log("se borro el producto selecionado")
     })
     resp.redirect('/')
+
+}
+
+export const ifIdProductExists = (req, resp, next) => {
+    let query  = 'SELECT * FROM PRODUCTS WHERE PRODUCT_ID = ?'
+    connection.query(query,[req.params.uid] ,(error, resultId) => {
+        if (error) return resp.redirect('/')
+        if(!resultId.length) return resp.status(400).send('No existe ese id en la base de datos')
+        next()
+    
+    })
+    
 
 }

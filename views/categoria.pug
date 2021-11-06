@@ -31,8 +31,7 @@ block container
                                 input.form-control(type="text" id="categoryName" name="categoryName" placeholder="Ej.Queso" value=category[0].category_name) 
                             .mb-4
                                 label.form-label(for="description" ) Descripcion
-                                textarea.form-control( id="description" name="description") #{category[0].category_description}
-                         
+                                textarea.form-control( id="description" name="description") #{category[0].category_description}   
                   
                     else 
                         form(action="/categoria", method="post") 

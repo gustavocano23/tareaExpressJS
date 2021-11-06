@@ -1,3 +1,4 @@
+import "./loadEnv.js";
 import express from 'express'
 import router from './routes/routes.js'
 const app =  express()
@@ -11,7 +12,7 @@ app.set('view engine', 'pug')
 // Configuracion la carpeta publica
 app.use(express.static('public'))
 
-//Configuracion para los formulacrios
+//Configuracion para los formularios
 app.use(express.urlencoded({extended: true}))
 app.use(express.json())
 
@@ -20,5 +21,6 @@ app.use('/',router)
 
 // Configuracion para el puerto donde se el servidor va escuchar
 app.listen(PORT, _ => {
-    console.log("El servido esta escuchando")
+    console.log("The server is listening")
 })
+

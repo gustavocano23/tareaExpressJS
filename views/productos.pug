@@ -18,7 +18,7 @@ block container
     .box    
         section.both-forms.shadow.p-3
             .form 
-                if product 
+                if product
                     form(action="/update/" + product[0].product_id, method="post")
                         .title-form 
                             .title

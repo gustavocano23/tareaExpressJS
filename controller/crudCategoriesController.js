@@ -38,9 +38,6 @@ export const insertCategory = (req, resp) => {
 
 
 export const updateCategory = (req, resp) => {
-
-    
-
     if (req.method == "GET") {
         let query = 'SELECT * FROM CATEGORIES WHERE CATEGORY_ID = ?'
         connection.query(query, [req.params.uid], (error, resultOfCategoryId) => {
@@ -86,4 +83,15 @@ export const deleteCategory = (req, resp) => {
     })
     
     resp.redirect('/categoria')
+}
+
+export const ifIdCategoryExists = (req, resp, next) => {
+    let query = 'SELECT * FROM CATEGORIES WHERE CATEGORY_ID = ?'
+    connection.query(query, [req.params.uid], (error, resultId) => {
+        if (error) throw error
+        console.log(resultId)
+        if(!resultId.length) return resp.status(400).send('No existe ese id en la base de datos')
+        next()
+    })
+
 }
